@@ -25,6 +25,10 @@ app.set('views', './views');
 
 
 app.get('/', async (req,res) => {
+  return res.render('services')
+})
+
+app.get('/info', async (req,res) => {
   try {
     let htmlString = await rp({
       method : 'GET',
@@ -37,7 +41,7 @@ app.get('/', async (req,res) => {
     let an3 = $("#an3").text()
     let an4 = $("#an4").text()
     let an5 = $("#an5").text()
-    return res.render('services',{ an1, an2, an3, an4, an5 })
+    return res.json({ an1, an2, an3, an4, an5 })
   } catch(e) {
     const $ = cheerio.load(e);
     let an1 = $("#an1").text()
@@ -45,7 +49,7 @@ app.get('/', async (req,res) => {
     let an3 = $("#an3").text()
     let an4 = $("#an4").text()
     let an5 = $("#an5").text()
-    return res.render('services',{ an1, an2, an3, an4, an5 })
+    return res.json({ an1, an2, an3, an4, an5 })
   }
 })
 
